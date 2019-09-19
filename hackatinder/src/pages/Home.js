@@ -9,7 +9,7 @@ class Home extends Component {
             <div>
                 <article className="mw5 center bg-white br3 pa3 pa4-ns mv3 ba b--black-10">
                     <div className="tc">
-                        <img src="http://tachyons.io/img/avatar_1.jpg" className="br-100 h4 w4 dib ba b--black-05 pa2" title="Photo of a kitty staring at you" />
+                        <img src="http://tachyons.io/img/avatar_1.jpg" alt="caty" className="br-100 h4 w4 dib ba b--black-05 pa2" title="Photo of a kitty staring at you" />
                         <h1 className="f3 mb2">Nome do usuário</h1>
                         <p className="f6 dim mr1 br-pill ph3 pv2 mb2 dib white bg-black shadow-1">skill</p>
                         <p className="f6 dim mr1 br-pill ph3 pv2 mb2 dib white bg-black shadow-1">skill</p>
@@ -18,8 +18,8 @@ class Home extends Component {
                 </article>
                 <p className='f2 tc'>Você ainda não tem uma equipe.</p>
                 <div className='tc'>
-                    <p className="f4 dim mh4 br-pill ph3 pv2 mb2 dib white bg-gray tracked shadow-1">Criar</p>
-                    <p className="f4 dim mh4 br-pill ph3 pv2 mb2 dib white bg-gray tracked shadow-1">Procurar</p>
+                    <a className="f4 link dim mh4 br-pill ph3 pv2 mb2 dib white bg-gray tracked shadow-1" href='/searchTeam'>Criar</a>
+                    <a className="f4 link dim mh4 br-pill ph3 pv2 mb2 dib white bg-gray tracked shadow-1" href='/searchCrew'>Procurar</a>
                 </div>
             </div>
         );

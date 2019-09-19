@@ -4,11 +4,11 @@ const Sidebar = props => {
 	const { state } = props;
 	const items = [
 		{
-			link: '/buscar-equipe',
+			link: '/',
 			name: 'Procurar uma equipe'
 		},
 		{
-			link: '/buscar-equipe',
+			link: '/searchCrew',
 			name: 'Procurar integrantes'
 		},
 		{
@@ -29,7 +29,7 @@ const Sidebar = props => {
 		<aside style={{ transform: state ? 'translate(0%)' : 'translate(-100%)' }} className="aspect-ratio w-100 aspect-ratio--object animated fadeIn a4 d2 bg-white">
 			<header className="flex items-center justify-between ph3 pv2 bg-black-20">
 				<h1 className="f4">Menu</h1>
-				<img width="35" src="/icons/ic_close.svg" onClick={() => props.onCloseSidebar()}/>
+				<img width="35" src="/icons/ic_close.svg" alt="img" onClick={() => props.onCloseSidebar()}/>
 			</header>
 
 			<ul className="list ph0">
