@@ -1,10 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Sidebar = props => {
 	const { state } = props;
 	const items = [
 		{
-			link: '/',
+			link: '/searchTeam',
 			name: 'Procurar uma equipe'
 		},
 		{
@@ -34,7 +35,7 @@ const Sidebar = props => {
 
 			<ul className="list ph0">
 				{items.map(item => {
-					return <SidebarItem item={item} />
+					return <SidebarItem item={item} onClick={() => props.onCloseSidebar()}/>
 				})}
 			</ul>
 		</aside>
@@ -45,7 +46,7 @@ const SidebarItem = props => {
 	const { item } = props;
 	return (
 		<li className="ph3 pv3 bb b--black-10 ">
-			<a className="link f4 gray" href={item.link}>{item.name}</a>
+			<Link onClick={props.onClick} className="link f4 gray" to={item.link}>{item.name}</Link>
 		</li>
 	)
 }
