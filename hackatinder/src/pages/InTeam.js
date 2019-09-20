@@ -14,7 +14,7 @@ class InTeam extends Component {
                         </div>
                         <div className="dtc v-mid pl3">
                             <h1 className="f6 mr1 f5-ns fw6 di lh-title black mv0">Participante X </h1>
-                            <span className="f7 ma1 ph2 pv1 bg-light-purple white">Backend</span>
+                            <span className="f7 ma1 code ph2 pv1 bg-light-purple white">Backend</span>
                         </div>
                     </article>
 
@@ -24,7 +24,7 @@ class InTeam extends Component {
                         </div>
                         <div className="dtc v-mid pl3">
                             <h1 className="f6 mr1 f5-ns fw6 di lh-title black mv0">Participante Y</h1>
-                            <span className="f7 ma1 ph2 pv1 bg-light-purple white">Fullstack</span>
+                            <span className="f7 ma1 code ph2 pv1 bg-light-purple white">Fullstack</span>
                         </div> 
                     </article>
 
@@ -34,19 +34,24 @@ class InTeam extends Component {
                         </div>
                         <div className="dtc v-mid pl3">
                             <h1 className="f6 mr1 f5-ns fw6 di lh-title black mv0">Participante Z</h1>
-                            <span className="f7 ma1 ph2 pv1 bg-light-purple white">Design</span>
-                            <span className="f7 ma1 ph2 pv1 bg-light-purple white">Frontend</span>
+                            <span className="f7 ma1 code ph2 pv1 bg-light-purple white">Design</span>
+                            <span className="f7 ma1 code ph2 pv1 bg-light-purple white">Frontend</span>
                         </div>
-                    </article>
-
-                    <div className='tc mt4 '>
-                        <a className="f6 link dim mh4 br-pill ph3 pv2 mb2 dib white bg-gray tracked shadow-1" href='/searchTeam'>Editar</a>
-                        <a className="f6 link dim mh4 br-pill ph3 pv2 mb2 dib white bg-gray tracked shadow-1" href='/searchCrew'>Sair</a>
-                    </div>
+                    </article>        
 
                 </main>
+                <div className="flex items-center justify-between pa4">
+                    <a href="#0" className="f5 no-underline black bg-animate hover-bg-light-purple hover-white inline-flex items-center pa3 ba border-box mr4">
+                        <span className="pl1">Editar</span>
+                    </a>
+                    <a href="/searchCrew" className="f5 no-underline black bg-animate hover-bg-light-purple hover-white inline-flex items-center pa3 ba border-box mr4">
+                        <span className="pl1">Chamar</span>
+                    </a>
+                    <a href="/NoTeam    " className="f5 no-underline black bg-animate hover-bg-light-purple hover-white inline-flex items-center pa3 ba border-box">
+                        <span className="pr1">Sair</span>
+                    </a>
+                </div>
             </div>
-        
         );
     } 
 }

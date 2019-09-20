@@ -4,7 +4,7 @@ class SearchCrew extends Component {
 
     render(){
         return(
-            <div>
+            <div className='mt6'>
                 <main className="mw6 center">
                     <article className="dt w-100 bb b--black-05 pb2 mt2" href="#0">
                     <div className="dtc w2 w3-ns v-mid">

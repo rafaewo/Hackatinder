@@ -10,8 +10,9 @@ class Home extends Component {
         }
     }
 
-    render(){
+// CRIAR FUNÇÃO QUE ATUALIZE O STATE: quando o usuário clicar para sair
 
+    render(){
         return(
             <div>
                 {this.state.inTeam

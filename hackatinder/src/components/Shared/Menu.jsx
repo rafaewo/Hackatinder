@@ -2,9 +2,9 @@ import React from 'react'
 
 const Menu = props => {
 	return (
-		<header className="flex items-center justify-between ph3 pv2 bg-black-20">
+		<header className="flex mt1 items-center justify-between ph3 pv2 bg-near-white shadow-5">
 			<img width="35" src="/icons/ic_menu.svg" alt="img" onClick={() => props.onHamburgerClicked()}/>
-			<h1 className="f4">Hackatinder</h1>
+			<a className="f2 fw7 ttu black tracked lh-title mt0 mb1 code link" href='/'>Hackatinder</a>
 			<img width="35" src="/icons/ic_user.svg" alt="img"/>
 		</header>
 	)
