@@ -1,6 +1,24 @@
 import React, { Component } from 'react'
 import withAuthentication from '../containers/withAuthentication'
 
+const participante = [
+	{
+		nome: 'Participante X',
+		usuario: '@xpart201',
+		skill: 'Backend',
+	},
+	{
+		nome: 'Prt Y',
+		usuario: '@parrty',
+		skill: 'Fullstack',
+	},
+	{
+		nome: 'Participante Z',
+		usuario: '@participantezzz',
+		skill: ['Design', 'Frontend'],
+	},
+]
+
 class SearchCrew extends Component {
 	render() {
 		return (
@@ -16,13 +34,13 @@ class SearchCrew extends Component {
 						</div>
 						<div className="dtc v-mid pl3">
 							<h1 className="f6 f5-ns fw6 lh-title black mv0">
-								Participante X{' '}
+								{participante[0].nome}{' '}
 							</h1>
 							<h2 className="f6 fw4 di mt0 mb0 black-60">
-								@userDoParticipantex
+								{participante[0].usuario}
 							</h2>
 							<span className="f7 ma2 ph2 pv1 bg-light-purple white">
-								Backend
+								{participante[0].skill}
 							</span>
 						</div>
 						<div className="dtc v-mid">
@@ -47,13 +65,13 @@ class SearchCrew extends Component {
 						</div>
 						<div className="dtc v-mid pl3">
 							<h1 className="f6 f5-ns fw6 lh-title black mv0">
-								Participante Y
+								{participante[1].nome}
 							</h1>
 							<h2 className="f6 di fw4 mt0 mb0 black-60">
-								@userDoParticipantey
+								{participante[1].usuario}
 							</h2>
 							<span className="f7 ma2 ph2 pv1 bg-light-purple white">
-								Fullstack
+								{participante[1].skill}
 							</span>
 						</div>
 						<div className="dtc v-mid">
@@ -78,16 +96,16 @@ class SearchCrew extends Component {
 						</div>
 						<div className="dtc v-mid pl3">
 							<h1 className="f6 f5-ns fw6 lh-title black mv0">
-								Participante Z
+								{participante[2].nome}
 							</h1>
 							<h2 className="f6 di fw4 mt0 mb0 black-60">
-								@userDoParticipantez
+								{participante[2].usuario}
 							</h2>
 							<span className="f7 ma2 ph2 pv1 bg-light-purple white">
-								Design
+								{participante[2].skill[0]}
 							</span>
 							<span className="f7 ma2 ph2 pv1 bg-light-purple white">
-								Frontend
+								{participante[2].skill[1]}
 							</span>
 						</div>
 						<div className="dtc v-mid">

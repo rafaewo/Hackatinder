@@ -1,12 +1,32 @@
 import React, { Component } from 'react'
 import withAuthentication from '../containers/withAuthentication'
 
+const time = {
+	nome: 'Hackaflix',
+	quantidadeMembros: '',
+}
+
+const participante = [
+	{
+		nome: 'Participante X',
+		skill: 'Backend',
+	},
+	{
+		nome: 'Prt Y',
+		skill: 'Fullstack',
+	},
+	{
+		nome: 'Participante Z',
+		skill: ['Design', 'Frontend'],
+	},
+]
+
 class InTeam extends Component {
 	render() {
 		return (
 			<div>
 				<h1 className=" lh-copy pa3 ph0-l bb tc b--black-10">
-					Time: Nome do Time
+					Time: {time.nome}
 				</h1>
 				<h3 className="ma1 tc ph0-l b--black-10">Equipe</h3>
 				<main className="mw6 center pa3">
@@ -20,10 +40,11 @@ class InTeam extends Component {
 						</div>
 						<div className="dtc v-mid pl3">
 							<h1 className="f6 mr1 f5-ns fw6 di lh-title black mv0">
-								Participante X{' '}
+								{participante[0].nome}
 							</h1>
+							{/* PROBLEMA: MAIS DE UMA SKILL PRECISA SER RENDERIZADA SEPARADAMENTE */}
 							<span className="f7 ma1 code ph2 pv1 bg-light-purple white">
-								Backend
+								{participante[0].skill}
 							</span>
 						</div>
 					</article>
@@ -38,10 +59,10 @@ class InTeam extends Component {
 						</div>
 						<div className="dtc v-mid pl3">
 							<h1 className="f6 mr1 f5-ns fw6 di lh-title black mv0">
-								Participante Y
+								{participante[1].nome}
 							</h1>
 							<span className="f7 ma1 code ph2 pv1 bg-light-purple white">
-								Fullstack
+								{participante[1].skill}
 							</span>
 						</div>
 					</article>
@@ -56,13 +77,13 @@ class InTeam extends Component {
 						</div>
 						<div className="dtc v-mid pl3">
 							<h1 className="f6 mr1 f5-ns fw6 di lh-title black mv0">
-								Participante Z
+								{participante[2].nome}
 							</h1>
 							<span className="f7 ma1 code ph2 pv1 bg-light-purple white">
-								Design
+								{participante[2].skill[0]}
 							</span>
 							<span className="f7 ma1 code ph2 pv1 bg-light-purple white">
-								Frontend
+								{participante[2].skill[1]}
 							</span>
 						</div>
 					</article>
@@ -78,7 +99,7 @@ class InTeam extends Component {
 						href="/searchCrew"
 						className="f5 no-underline black bg-animate hover-bg-light-purple hover-white inline-flex items-center pa3 ba border-box mr4"
 					>
-						<span className="pl1">Chamar</span>
+						<span className="pl1">Adicionar</span>
 					</a>
 					<a
 						href="/NoTeam    "
