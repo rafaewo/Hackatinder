@@ -1,5 +1,26 @@
 import React, { Component } from 'react';
 
+const participante = [
+    {
+        nome:'Participante X',
+        usuario: '@xpart201',
+        skill: 'Backend'
+    },
+    {
+        nome:'Prt Y',
+        usuario: '@parrty',
+        skill: 'Fullstack'
+    },
+    {
+        nome: 'Participante Z',
+        usuario: '@participantezzz',
+        skill: [
+            'Design',
+            'Frontend'
+        ]
+    }
+]
+
 class SearchCrew extends Component {
 
     render(){
@@ -11,9 +32,9 @@ class SearchCrew extends Component {
                         <img src="http://mrmrs.github.io/photos/p/5.jpg" alt="imgx" className="ba b--black-10 db br-100 w2 w3-ns h2 h3-ns"/>
                     </div>
                     <div className="dtc v-mid pl3">
-                        <h1 className="f6 f5-ns fw6 lh-title black mv0">Participante X </h1>
-                        <h2 className="f6 fw4 di mt0 mb0 black-60">@userDoParticipantex</h2>
-                        <span className="f7 ma2 ph2 pv1 bg-light-purple white">Backend</span>
+                        <h1 className="f6 f5-ns fw6 lh-title black mv0">{participante[0].nome} </h1>
+                        <h2 className="f6 fw4 di mt0 mb0 black-60">{participante[0].usuario}</h2>
+                        <span className="f7 ma2 ph2 pv1 bg-light-purple white">{participante[0].skill}</span>
                     </div>
                     <div className="dtc v-mid">
                         <form className="w-100 tr">
@@ -26,9 +47,9 @@ class SearchCrew extends Component {
                             <img src="http://mrmrs.github.io/photos/p/3.jpg" alt="imgy" className="ba b--black-10 db br-100 w2 w3-ns h2 h3-ns"/>
                         </div>
                         <div className="dtc v-mid pl3">
-                            <h1 className="f6 f5-ns fw6 lh-title black mv0">Participante Y</h1>
-                            <h2 className="f6 di fw4 mt0 mb0 black-60">@userDoParticipantey</h2>
-                            <span className="f7 ma2 ph2 pv1 bg-light-purple white">Fullstack</span>
+                            <h1 className="f6 f5-ns fw6 lh-title black mv0">{participante[1].nome}</h1>
+                            <h2 className="f6 di fw4 mt0 mb0 black-60">{participante[1].usuario}</h2>
+                            <span className="f7 ma2 ph2 pv1 bg-light-purple white">{participante[1].skill}</span>
                         </div>
                         <div className="dtc v-mid">
                             <form className="w-100 tr">
@@ -41,10 +62,10 @@ class SearchCrew extends Component {
                             <img src="http://mrmrs.github.io/photos/p/4.jpg" alt="imgz" className="ba b--black-10 db br-100 w2 w3-ns h2 h3-ns"/>
                         </div>
                         <div className="dtc v-mid pl3">
-                            <h1 className="f6 f5-ns fw6 lh-title black mv0">Participante Z</h1>
-                            <h2 className="f6 di fw4 mt0 mb0 black-60">@userDoParticipantez</h2>
-                            <span className="f7 ma2 ph2 pv1 bg-light-purple white">Design</span>
-                            <span className="f7 ma2 ph2 pv1 bg-light-purple white">Frontend</span>
+                            <h1 className="f6 f5-ns fw6 lh-title black mv0">{participante[2].nome}</h1>
+                            <h2 className="f6 di fw4 mt0 mb0 black-60">{participante[2].usuario}</h2>
+                            <span className="f7 ma2 ph2 pv1 bg-light-purple white">{participante[2].skill[0]}</span>
+                            <span className="f7 ma2 ph2 pv1 bg-light-purple white">{participante[2].skill[1]}</span>
                         </div>
                         <div className="dtc v-mid">
                             <form className="w-100 tr">

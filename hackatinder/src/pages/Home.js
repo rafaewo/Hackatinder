@@ -6,11 +6,11 @@ class Home extends Component {
     constructor() {
         super();
         this.state = {
-            inTeam: true
+            inTeam: false
         }
     }
 
-// CRIAR FUNÇÃO QUE ATUALIZE O STATE: quando o usuário clicar para sair
+// CRIAR FUNÇÃO 'isOnTeam()' para definir o estado do this.state.inTeam
 
     render(){
         return(
