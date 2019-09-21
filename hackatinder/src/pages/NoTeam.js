@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import withAuthentication from '../containers/withAuthentication'
 
 const NoTeam = props => {
@@ -37,18 +37,19 @@ const NoTeam = props => {
 			<p className="f2 tc">Você ainda não tem uma equipe.</p>
 
 			<div className="flex tc justify-around">
-				<a
+				<Link />
+				<Link
 					className="f5 no-underline black bg-animate hover-bg-light-purple hover-white inline-flex items-center pa3 ba border-box "
-					href="/CreateTeam"
+					to="/CreateTeam"
 				>
 					Criar
-				</a>
-				<a
+				</Link>
+				<Link
 					className="f5 no-underline black bg-animate hover-bg-light-purple hover-white inline-flex items-center pa3 ba border-box"
-					href="/searchTeam"
+					to="/searchTeam"
 				>
 					Procurar
-				</a>
+				</Link>
 			</div>
 		</div>
 	)

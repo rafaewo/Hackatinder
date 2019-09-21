@@ -48,9 +48,6 @@ const CadastrarUsuario = props => {
 			email: props.user.email,
 			user_id: props.user.uid,
 			skills: customUserForm.skills,
-			grupo: {
-				ativo: false,
-			},
 			convites: [],
 			solicitacoes: [],
 		}
