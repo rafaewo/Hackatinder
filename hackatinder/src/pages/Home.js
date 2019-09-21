@@ -1,27 +1,46 @@
-import React, { Component } from 'react';
-import InTeam from './InTeam';
-import NoTeam from './NoTeam';
+import React, { useState, useEffect } from 'react'
+import InTeam from './InTeam'
+import NoTeam from './NoTeam'
+import withAuthentication from '../containers/withAuthentication'
+import withFirebase from '../containers/withFirebase'
+import CadastrarUsuario from './CadastrarUsuario'
 
-class Home extends Component {
-    constructor() {
-        super();
-        this.state = {
-            inTeam: true
-        }
-    }
+const Home = props => {
+	const [hackatinderUser, sethackatinderUser] = useState(null)
+	const [hasCadastro, setHasCadatro] = useState(true)
+	const [inTeam, setInTeam] = useState(false)
 
-// CRIAR FUNÇÃO QUE ATUALIZE O STATE: quando o usuário clicar para sair
+	const checkIfUsuarioHasCadastro = async () => {
+		const firestore = props.firebase.firestore()
 
-    render(){
-        return(
-            <div>
-                {this.state.inTeam
-                    ? <InTeam />
-                    : <NoTeam />
-                }
-            </div>
-        );
-    } 
+		const usuarioCadastro = await firestore
+			.collection('usuarios')
+			.where('user_id', '==', props.user.uid)
+			.get()
+
+		setHasCadatro(!usuarioCadastro.empty)
+
+		if (!usuarioCadastro.empty) {
+			sethackatinderUser(usuarioCadastro.docs[0].data())
+		}
+	}
+
+	useEffect(() => {
+		checkIfUsuarioHasCadastro()
+	}, [])
+
+	if (hasCadastro)
+		return (
+			<div>
+				{inTeam ? (
+					<InTeam hackatinder={hackatinderUser} />
+				) : (
+					<NoTeam hackatinder={hackatinderUser} />
+				)}
+			</div>
+		)
+	else return <CadastrarUsuario />
 }
 
-export default Home;
+const homeWithFirebase = withFirebase(Home)
+export default withAuthentication(homeWithFirebase)
