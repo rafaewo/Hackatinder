@@ -21,7 +21,16 @@ const Home = props => {
 		setHasCadatro(!usuarioCadastro.empty)
 
 		if (!usuarioCadastro.empty) {
-			sethackatinderUser(usuarioCadastro.docs[0].data())
+			sethackatinderUser({
+				id: usuarioCadastro.docs[0].id,
+				...usuarioCadastro.docs[0].data(),
+			})
+
+			const grupo = usuarioCadastro.docs[0].data().grupo
+
+			if (grupo) {
+				setInTeam(true)
+			}
 		}
 	}
 
