@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
 import withAuthentication from '../containers/withAuthentication'
 
 const NoTeam = props => {
-	const hackaUser = props.hackatinder
-	console.log(hackaUser)
+	const hackaUser =
+		props.hackatinder ||
+		(props.location.state && props.location.state.hackauser)
 
 	return (
 		<div className="mt5">
@@ -52,4 +54,5 @@ const NoTeam = props => {
 	)
 }
 
-export default withAuthentication(NoTeam)
+const noTeamWithRouter = withRouter(NoTeam)
+export default withAuthentication(noTeamWithRouter)

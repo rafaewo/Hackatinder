@@ -28,6 +28,17 @@ const CadastrarUsuario = props => {
 		}
 	}
 
+	const getNewUser = async reference => {
+		const firestore = props.firebase.firestore()
+
+		const usuarioCadastro = await firestore
+			.collection('usuarios')
+			.doc(reference.id)
+			.get()
+
+		return { id: usuarioCadastro.id, ...usuarioCadastro.data() }
+	}
+
 	const saveUsuarios = async () => {
 		const customUserForm = { ...userForm }
 
@@ -49,7 +60,8 @@ const CadastrarUsuario = props => {
 		firestore
 			.collection('usuarios')
 			.add(usuario)
-			.then(reference => props.history.push('/home'))
+			.then(getNewUser)
+			.then(user => props.history.push('/NoTeam', { hackauser: user }))
 	}
 
 	return (
@@ -99,13 +111,17 @@ const CadastrarUsuario = props => {
 							Inclua no máximo 3 habilidades principais
 						</small>
 						<div className="flex">
-							<input
-								className="w-100 br2 ba b--moon-gray pv2 ph3"
-								type="text"
-								name="skill"
+							<select
 								value={userForm.skill}
+								name="skill"
+								className="w-100 br2 ba b--moon-gray pv2 ph3"
 								onChange={handleInputChange}
-							/>
+							>
+								<option value={'Designer'}>Designer</option>
+								<option value={'Frontend'}>Frontend</option>
+								<option value={'Backend'}>Backend</option>
+								<option value={'Gerente'}>Gerente</option>
+							</select>
 							<button className="ml2" onClick={() => adicionarSkill()}>
 								Adicionar
 							</button>
