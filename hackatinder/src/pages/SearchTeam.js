@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import withAuthentication from '../containers/withAuthentication'
+import withFirebase from '../containers/withFirebase'
 
 const EQUIPES_DATA = [
 	{
@@ -23,6 +24,9 @@ const EQUIPES_DATA = [
 		skills: ['Backend'],
 	},
 ]
+
+const API_URL =
+	'https://us-central1-hackatinder.cloudfunctions.net/criarUsuario'
 
 const Team = ({ team, ...props }) => {
 	return (
@@ -65,6 +69,23 @@ const Team = ({ team, ...props }) => {
 }
 
 const SearchTeam = props => {
+	const firebase = props.firebase
+
+	const fetchGruposFromFirestore = async () => {
+		const firestore = firebase.firestore()
+
+		const gruposDocuments = await firestore
+			.collection('grupos')
+			.where('numero_skills', '<=', 4)
+			.get()
+
+		console.log(gruposDocuments)
+	}
+
+	useEffect(() => {
+		fetchGruposFromFirestore()
+	}, [])
+
 	const [equipes, setEquipes] = useState(EQUIPES_DATA)
 
 	const handleInputChange = ({ target }) => {
@@ -176,4 +197,5 @@ const SearchTeam = props => {
 	)
 }
 
-export default withAuthentication(SearchTeam)
+const searchTeamWithFireabse = withFirebase(SearchTeam)
+export default withAuthentication(searchTeamWithFireabse)
