@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
 import withAuthentication from '../containers/withAuthentication'
 import withFirebase from '../containers/withFirebase'
@@ -6,11 +6,48 @@ import withFirebase from '../containers/withFirebase'
 const CadastrarUsuario = props => {
 	const [userForm, setUserForm] = useState({
 		nome: '',
-		email: '',
 		shawee_user: '',
 		skill: 'Designer',
 		skills: [],
+		id: null,
 	})
+
+	useEffect(() => {
+		checkIfUsuarioHasCadastro()
+	}, [])
+
+	const checkIfUsuarioHasCadastro = async () => {
+		const firestore = props.firebase.firestore()
+
+		const usuarioCadastro = await firestore
+			.collection('usuarios')
+			.where('user_id', '==', props.user.uid)
+			.get()
+
+		if (!usuarioCadastro.empty) {
+			const user = {
+				id: usuarioCadastro.docs[0].id,
+				...usuarioCadastro.docs[0].data(),
+			}
+
+			setUserForm({
+				id: user.id,
+				nome: user.nome,
+				shawee_user: user.usuario,
+				skills: user.skills,
+			})
+		}
+	}
+
+	const removeSkill = index => {
+		const customUserForm = { ...userForm }
+		const skills = [...customUserForm.skills]
+
+		skills.splice(index, 1)
+		customUserForm.skills = skills
+
+		setUserForm(customUserForm)
+	}
 
 	const handleInputChange = ({ target }) => {
 		const customUserForm = { ...userForm }
@@ -40,25 +77,41 @@ const CadastrarUsuario = props => {
 	}
 
 	const saveUsuarios = async () => {
+		const firestore = props.firebase.firestore()
 		const customUserForm = { ...userForm }
 
-		const usuario = {
-			nome: customUserForm.nome,
-			usuario: customUserForm.shawee_user,
-			email: props.user.email,
-			user_id: props.user.uid,
-			skills: customUserForm.skills,
-			convites: [],
-			solicitacoes: [],
+		let usuario = {}
+
+		if (!customUserForm.id) {
+			usuario = {
+				nome: customUserForm.nome,
+				usuario: customUserForm.shawee_user,
+				email: props.user.email,
+				user_id: props.user.uid,
+				skills: customUserForm.skills,
+				image: `https://picsum.photos/seed/${Math.random()}/200/300`,
+				convites: [],
+				solicitacoes: [],
+			}
+
+			firestore
+				.collection('usuarios')
+				.add(usuario)
+				.then(getNewUser)
+				.then(user => props.history.push('/NoTeam', { hackauser: user }))
+		} else {
+			usuario = {
+				nome: customUserForm.nome,
+				usuario: customUserForm.shawee_user,
+				skills: customUserForm.skills,
+			}
+
+			firestore
+				.collection('usuarios')
+				.doc(customUserForm.id)
+				.update(usuario)
+				.then(() => props.history.push('/home'))
 		}
-
-		const firestore = props.firebase.firestore()
-
-		firestore
-			.collection('usuarios')
-			.add(usuario)
-			.then(getNewUser)
-			.then(user => props.history.push('/NoTeam', { hackauser: user }))
 	}
 
 	return (
@@ -128,6 +181,7 @@ const CadastrarUsuario = props => {
 								return (
 									<span
 										key={skillIndex}
+										onClick={() => removeSkill(skillIndex)}
 										className="f7 mr2 ph2 pv1 bg-light-purple white"
 									>
 										{skill}
