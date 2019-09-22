@@ -8,6 +8,7 @@ import SearchCrew from './pages/SearchCrew'
 import SearchTeam from './pages/SearchTeam'
 import CreateTeam from './pages/CreateTeam'
 import InTeam from './pages/InTeam'
+import CadastrarUsuario from './pages/CadastrarUsuario'
 
 function Routes() {
 	return (
@@ -21,6 +22,7 @@ function Routes() {
 			<Route path="/InTeam" component={InTeam} />
 			<Route path="/CreateTeam" component={CreateTeam} />
 			<Route path="/searchTeam" component={SearchTeam} />
+			<Route path="/editarUsuario" component={CadastrarUsuario} />
 		</Switch>
 	)
 }

@@ -35,7 +35,6 @@ const Home = props => {
 	}
 
 	useEffect(() => {
-		console.log(props)
 		checkIfUsuarioHasCadastro()
 	}, [])
 

@@ -12,7 +12,7 @@ const NoTeam = props => {
 			<article className="mw5 shadow-4 center bg-white br3 pa3 pa4-ns mv3 ba b--black-10">
 				<div className="tc">
 					<img
-						src={`https://picsum.photos/seed/${Math.random()}/200/300`}
+						src={hackaUser && hackaUser.image}
 						alt="profile pic"
 						className="br-100 h4 w4 dib ba b--black-05 pa2"
 					/>
@@ -23,7 +23,7 @@ const NoTeam = props => {
 							hackaUser.skills.map((skill, skillIndex) => {
 								return (
 									<p
-										key={skillIndex} 
+										key={skillIndex}
 										className="f7 dim ma1 code ph2 pv2 mb2 dib white bg-light-purple shadow-1"
 									>
 										{skill}
