@@ -22,6 +22,8 @@ const CreateTeam = props => {
 			name: customTeam.nome,
 			skills: [].concat(hackauser.skills[0]),
 			membros: [].concat({ ...hackauser }),
+			num_membros: 1,
+			convites: [],
 		}
 
 		const grupo = await firestore.collection('grupos').add(equipe)
@@ -51,7 +53,10 @@ const CreateTeam = props => {
 						/>
 					</div>
 
-					<button className="f5 mv2 br2 white pointer bg-animate bg-light-purple shadow-4 pa2 bn border-box" onClick={() => criarEquipe()}>
+					<button
+						className="f5 mv2 br2 white pointer bg-animate bg-light-purple shadow-4 pa2 bn border-box"
+						onClick={() => criarEquipe()}
+					>
 						Salvar
 					</button>
 				</div>

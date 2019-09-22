@@ -24,7 +24,6 @@ const Menu = props => {
 	}
 
 	useEffect(() => {
-		console.log(props.user)
 		setUserOnHeader()
 	}, [props.location.state])
 

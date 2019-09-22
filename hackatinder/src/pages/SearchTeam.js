@@ -2,33 +2,7 @@ import React, { useState, useEffect } from 'react'
 import withAuthentication from '../containers/withAuthentication'
 import withFirebase from '../containers/withFirebase'
 
-const EQUIPES_DATA = [
-	{
-		image: `https://picsum.photos/seed/${Math.random()}/200/300`,
-		name: 'Intergalaticos da Tribo Python',
-		skills: ['Designer', 'Backend'],
-	},
-	{
-		image: `https://picsum.photos/seed/${Math.random()}/200/300`,
-		name: 'Alguma outra equipe',
-		skills: ['Backend', 'Backend', 'Backend'],
-	},
-	{
-		image: `https://picsum.photos/seed/${Math.random()}/200/300`,
-		name: 'Precisamos de Backend',
-		skills: ['Designer', 'Designer', 'Frontend'],
-	},
-	{
-		image: `https://picsum.photos/seed/${Math.random()}/200/300`,
-		name: 'Internet',
-		skills: ['Backend'],
-	},
-]
-
-const API_URL =
-	'https://us-central1-hackatinder.cloudfunctions.net/criarUsuario'
-
-const Team = ({ team, ...props }) => {
+const Team = ({ team, allowToRequest, onSolicitar, ...props }) => {
 	return (
 		<article className="dt w-100 bb b--black-05 pb2 mt2" href="#0">
 			<div className="dtc w2 w3-ns">
@@ -39,8 +13,10 @@ const Team = ({ team, ...props }) => {
 				/>
 			</div>
 			<div className="dtc v-mid pl3">
-				<h1 className="f6 f5-ns fw6 lh-title black mv0">{team.name} ({team.skills.length})</h1>
-				<span className='f7 black-40'>Skills dos membros</span>
+				<h1 className="f6 f5-ns fw6 lh-title black mv0">
+					{team.name} ({team.skills.length})
+				</h1>
+				<span className="f7 black-40">Skills dos membros</span>
 				<div className="flex flex-wrap mt2">
 					{team.skills.map((skill, skillIndex) => {
 						return (
@@ -55,66 +31,95 @@ const Team = ({ team, ...props }) => {
 				</div>
 			</div>
 
-			<div className="dtc v-mid">
-				<form className="w-100 tr">
-					<button
-						className="f6 button-reset shadow-1 bg-white ba b--black-10 dim pointer pv1 black-60"
-						type="submit"
-					>
-						Solicitar
-					</button>
-				</form>
-			</div>
+			{allowToRequest && (
+				<div className="dtc v-mid">
+					<div className="w-100 tr">
+						<button
+							className="f6 button-reset shadow-1 bg-white ba b--black-10 dim pointer pv1 black-60"
+							type="submit"
+							onClick={onSolicitar}
+						>
+							Solicitar
+						</button>
+					</div>
+				</div>
+			)}
 		</article>
 	)
 }
 
 const SearchTeam = props => {
 	const firebase = props.firebase
+	const [hackaUser, setHackaUser] = useState([])
+	const [equipes, setEquipes] = useState([])
+	const [equipesFiltradas, setEquipesFiltradas] = useState(-1)
+
+	useEffect(() => {
+		fetchGruposFromFirestore()
+		findHackatinderUser()
+	}, [])
+
+	const findHackatinderUser = async () => {
+		const firestore = props.firebase.firestore()
+
+		const usuarioCadastro = await firestore
+			.collection('usuarios')
+			.where('user_id', '==', props.user.uid)
+			.get()
+
+		if (!usuarioCadastro.empty) {
+			setHackaUser({
+				id: usuarioCadastro.docs[0].id,
+				...usuarioCadastro.docs[0].data(),
+			})
+		}
+	}
 
 	const fetchGruposFromFirestore = async () => {
 		const firestore = firebase.firestore()
 
-		const gruposDocuments = await firestore
+		const teams = await firestore
 			.collection('grupos')
-			.where('numero_skills', '<=', 4)
+			.where('num_membros', '<=', 4)
 			.get()
+			.then(snapshot => snapshot.docs)
+			.then(teams => teams.map(t => ({ id: t.id, ...t.data() })))
 
-		console.log(gruposDocuments)
+		setEquipes(teams)
 	}
-
-	useEffect(() => {
-		fetchGruposFromFirestore()
-	}, [])
-
-	const [equipes, setEquipes] = useState(EQUIPES_DATA)
 
 	const handleInputChange = ({ target }) => {
 		const searchTerm = target.value.toLowerCase()
 
 		if (!searchTerm) {
-			setEquipes(EQUIPES_DATA)
+			fetchGruposFromFirestore()
+			setEquipesFiltradas(-1)
 			return
 		}
 
-		const equipesFiltradas = EQUIPES_DATA.filter(equipe =>
+		const equipesFiltradas = equipes.filter(equipe =>
 			equipe.name.toLowerCase().includes(searchTerm)
 		)
-		setEquipes(equipesFiltradas || [])
+		setEquipesFiltradas(equipesFiltradas || [])
 	}
 
 	const handleRadioChange = ({ target }) => {
 		const quantidadeIntegrantes = Number(target.value)
 
 		if (quantidadeIntegrantes === 0) {
-			setEquipes(EQUIPES_DATA)
+			fetchGruposFromFirestore()
+			setEquipesFiltradas(-1)
 			return
 		}
 
-		const equipesFiltradas = EQUIPES_DATA.filter(
+		const equipesFiltradas = equipes.filter(
 			equipe => equipe.skills.length === quantidadeIntegrantes
 		)
-		setEquipes(equipesFiltradas || [])
+		setEquipesFiltradas(equipesFiltradas || [])
+	}
+
+	const handleSolicitar = (grupoid, userid) => {
+		console.log(grupoid, userid)
 	}
 
 	return (
@@ -180,9 +185,9 @@ const SearchTeam = props => {
 						value="0"
 						type="radio"
 						name="integrantes"
-						id="so4"
+						id="tudo"
 					/>
-					<label htmlFor="so4" className="f7 mr2">
+					<label htmlFor="tudo" className="f7 mr2">
 						Tudo
 					</label>
 					{/* <img className="dib v-mid ml2" width="20" src="/icons/ic_search.svg"/> */}
@@ -190,9 +195,27 @@ const SearchTeam = props => {
 			</nav>
 
 			<main className="mw6 center ph2">
-				{equipes.map((equipe, equipeIndex) => {
-					return <Team key={equipeIndex} team={equipe} />
-				})}
+				{equipesFiltradas !== -1
+					? equipesFiltradas.map((equipe, equipeIndex) => {
+							return (
+								<Team
+									onSolicitar={() => handleSolicitar(equipe.id, hackaUser.id)}
+									allowToRequest={!hackaUser.grupo}
+									key={equipeIndex}
+									team={equipe}
+								/>
+							)
+					  })
+					: equipes.map((equipe, equipeIndex) => {
+							return (
+								<Team
+									onSolicitar={() => handleSolicitar(equipe.id, hackaUser.id)}
+									allowToRequest={!hackaUser.grupo}
+									key={equipeIndex}
+									team={equipe}
+								/>
+							)
+					  })}
 			</main>
 		</React.Fragment>
 	)

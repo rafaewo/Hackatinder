@@ -90,11 +90,11 @@ const InTeam = props => {
 		<React.Fragment>
 			{team && (
 				<div>
-					<TeamHeader nome={team.nome} />
+					<TeamHeader nome={team.name} />
 					<TeamIntegrants membros={team.membros} />
 				</div>
 			)}
-			
+
 			<div className="flex items-center justify-around pa4">
 				<Link
 					to="#0"
@@ -115,7 +115,6 @@ const InTeam = props => {
 					<span className="pr1">Sair</span>
 				</button>
 			</div>
-			
 		</React.Fragment>
 	)
 }

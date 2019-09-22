@@ -91,7 +91,6 @@ const CadastrarUsuario = props => {
 				skills: customUserForm.skills,
 				image: `https://picsum.photos/seed/${Math.random()}/200/300`,
 				convites: [],
-				solicitacoes: [],
 			}
 
 			firestore
