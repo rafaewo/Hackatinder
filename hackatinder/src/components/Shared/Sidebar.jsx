@@ -29,10 +29,10 @@ const Sidebar = props => {
 	return (
 		<aside
 			style={{ transform: state ? 'translate(0%)' : 'translate(-100%)' }}
-			className="aspect-ratio w-100 aspect-ratio--object animated fadeIn a4 d2 bg-white"
+			className="aspect-ratio w-100 measure-narrow aspect-ratio--object animated fadeIn a4 d2 bg-white"
 		>
-			<header className="flex items-center justify-between ph3 pv2 bg-black-20">
-				<h1 className="f4">Menu</h1>
+			<header className="flex items-center justify-between bg-near-white ph3 pv2 bg-black-20">
+				<h1 className="f3 code ttu light-purple">Menu</h1>
 				<img
 					width="35"
 					src="/icons/ic_close.svg"

@@ -39,27 +39,19 @@ const CreateTeam = props => {
 			<main className="pa4 black-80 ">
 				<div className="measure center">
 					<fieldset id="sign_up" className="ba b--transparent ph0 mh0" />
-					<legend className="f4 fw6 ph0 mh0">Dê um nome a sua Equipe</legend>
+					<legend className="f4 fw6 ph0 mh0">Nomeie sua equipe</legend>
 					<div className="mt3 mb3">
 						<label className="db fw6 lh-copy f6">Equipe:</label>
 						<input
-							className="w-100 br2 ba b--moon-gray pv2 ph3"
+							className="w-100 tc br2 ba b--moon-gray pv2"
 							name="nome"
 							value={team.nome}
 							onChange={({ target }) => setTeam({ nome: target.value })}
-							placeholder="Digite o nome da sua equipe..."
+							placeholder="Digite o nome da sua equipe"
 						/>
 					</div>
-					{/* <div>
-						<a
-							href="/InTeam"
-							className="f5 mv2 no-underline black bg-animate hover-bg-light-purple hover-white inline-flex items-center pa2 ba border-box"
-						>
-							<span className="pl1">Criar</span>
-						</a>
-					</div> */}
 
-					<button className="db w-100 pv2" onClick={() => criarEquipe()}>
+					<button className="f5 mv2 br2 white pointer bg-animate bg-light-purple shadow-4 pa2 bn border-box" onClick={() => criarEquipe()}>
 						Salvar
 					</button>
 				</div>

@@ -39,7 +39,8 @@ const Team = ({ team, ...props }) => {
 				/>
 			</div>
 			<div className="dtc v-mid pl3">
-				<h1 className="f6 f5-ns fw6 lh-title black mv0">{team.name}</h1>
+				<h1 className="f6 f5-ns fw6 lh-title black mv0">{team.name} ({team.skills.length})</h1>
+				<span className='f7 black-40'>Skills dos membros</span>
 				<div className="flex flex-wrap mt2">
 					{team.skills.map((skill, skillIndex) => {
 						return (
@@ -57,7 +58,7 @@ const Team = ({ team, ...props }) => {
 			<div className="dtc v-mid">
 				<form className="w-100 tr">
 					<button
-						className="f6 button-reset bg-white ba b--black-10 dim pointer pv1 black-60"
+						className="f6 button-reset shadow-1 bg-white ba b--black-10 dim pointer pv1 black-60"
 						type="submit"
 					>
 						Solicitar

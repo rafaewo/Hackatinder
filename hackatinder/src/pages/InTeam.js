@@ -94,7 +94,8 @@ const InTeam = props => {
 					<TeamIntegrants membros={team.membros} />
 				</div>
 			)}
-			<div className="flex items-center justify-between pa4">
+			
+			<div className="flex items-center justify-around pa4">
 				<Link
 					to="#0"
 					className="f5 no-underline black bg-animate hover-bg-light-purple hover-white inline-flex items-center pa3 ba border-box mr4"
@@ -114,6 +115,7 @@ const InTeam = props => {
 					<span className="pr1">Sair</span>
 				</button>
 			</div>
+			
 		</React.Fragment>
 	)
 }

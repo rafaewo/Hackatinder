@@ -3,18 +3,18 @@ import withAuthentication from '../containers/withAuthentication'
 
 const participante = [
 	{
-		nome: 'Participante X',
-		usuario: '@xpart201',
+		nome: 'User X',
+		usuario: '@uxser',
+		skill: 'Design',
+	},
+	{
+		nome: 'User Y',
+		usuario: '@usery',
 		skill: 'Backend',
 	},
 	{
-		nome: 'Prt Y',
-		usuario: '@parrty',
-		skill: 'Fullstack',
-	},
-	{
-		nome: 'Participante Z',
-		usuario: '@participantezzz',
+		nome: 'User Z',
+		usuario: '@youzer',
 		skill: ['Design', 'Frontend'],
 	},
 ]
@@ -22,9 +22,10 @@ const participante = [
 class SearchCrew extends Component {
 	render() {
 		return (
-			<div className="mt6">
+			<div className="mt5 mh3">
+				<h1 className='f4 black-70 mb4 ttu tc'>Convide participantes para sua equipe:</h1>
 				<main className="mw6 center">
-					<article className="dt w-100 bb b--black-05 pb2 mt2" href="#0">
+					<article className="dt w-100 bb b--black-05 pb2 mt2" href="#0">	
 						<div className="dtc w2 w3-ns v-mid">
 							<img
 								src="http://mrmrs.github.io/photos/p/5.jpg"
@@ -46,7 +47,7 @@ class SearchCrew extends Component {
 						<div className="dtc v-mid">
 							<form className="w-100 tr">
 								<button
-									className="f6 button-reset bg-white ba b--black-10 dim pointer pv1 black-60"
+									className="f6 shadow-1 button-reset bg-white ba b--black-10 dim pointer pv1 black-60"
 									type="submit"
 								>
 									{' '}
@@ -77,7 +78,7 @@ class SearchCrew extends Component {
 						<div className="dtc v-mid">
 							<form className="w-100 tr">
 								<button
-									className="f6 button-reset bg-white ba b--black-10 dim pointer pv1 black-60"
+									className="f6 shadow-1 button-reset bg-white ba b--black-10 dim pointer pv1 black-60"
 									type="submit"
 								>
 									{' '}
@@ -111,7 +112,7 @@ class SearchCrew extends Component {
 						<div className="dtc v-mid">
 							<form className="w-100 tr">
 								<button
-									className="f6 button-reset bg-white ba b--black-10 dim pointer pv1 black-60"
+									className="f6 shadow-1 button-reset bg-white ba b--black-10 dim pointer pv1 black-60"
 									type="submit"
 								>
 									{' '}
@@ -122,6 +123,7 @@ class SearchCrew extends Component {
 					</article>
 				</main>
 			</div>
+			
 		)
 	}
 }
