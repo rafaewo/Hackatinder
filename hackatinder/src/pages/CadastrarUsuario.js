@@ -8,7 +8,7 @@ const CadastrarUsuario = props => {
 		nome: '',
 		email: '',
 		shawee_user: '',
-		skill: '',
+		skill: 'Designer',
 		skills: [],
 	})
 
